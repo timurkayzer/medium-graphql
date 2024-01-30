@@ -1,5 +1,6 @@
 import { ObjectType } from '@nestjs/graphql';
 import { Post } from 'src/post/entities/post.entity';
+import { UserRole } from './user-role.enum';
 
 @ObjectType()
 export class User {
