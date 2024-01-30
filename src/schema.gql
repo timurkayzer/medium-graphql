@@ -22,11 +22,11 @@ type Mutation {
 }
 
 type Post {
-  author: Float!
+  author: User!
   content: String!
   id: Float!
   title: String!
-  viewers: Float!
+  viewers: [User!]!
 }
 
 type Query {
@@ -50,7 +50,7 @@ type User {
   email: String!
   id: Float!
   name: String!
-  posts: Float!
+  posts: [Post!]!
   role: String!
-  viewedPosts: Float!
+  viewedPosts: [Post!]!
 }
