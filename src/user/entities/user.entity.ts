@@ -1,5 +1,4 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Post } from 'src/post/entities/post.entity';
 import { UserRole } from './user-role.enum';
 
 @ObjectType()
@@ -13,7 +12,7 @@ export class User {
   @Field()
   role: UserRole;
   @Field()
-  posts: Post[];
+  posts: number;
   @Field()
-  viewedPosts: Post[];
+  viewedPosts: number;
 }
