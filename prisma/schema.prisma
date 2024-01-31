@@ -9,3 +9,22 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id    Int     @default(autoincrement()) @id
+  email String  @unique
+  name  String?
+  role String
+  posts Post[]
+  viewedPosts Post[]
+}
+// todo many to many
+
+model Post {
+  id        Int      @default(autoincrement()) @id
+  title     String
+  content   String?
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId Int
+  viewers    User[] @relation(fields: [authorId], references: [id])
+}
