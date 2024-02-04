@@ -2,23 +2,32 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AuthUserEntity {
+  token: String!
+}
+
+input AuthUserInput {
+  email: String!
+  password: String!
+}
+
 input CreatePostInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  authorId: Float!
+  content: String!
+  title: String!
 }
 
 input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  email: String!
+  name: String!
+  role: String!
 }
 
 type Mutation {
   createPost(createPostInput: CreatePostInput!): Post!
   createUser(createUserInput: CreateUserInput!): User!
   removePost(id: Int!): Post!
-  removeUser(id: Int!): User!
   updatePost(updatePostInput: UpdatePostInput!): Post!
-  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Post {
@@ -30,20 +39,17 @@ type Post {
 }
 
 type Query {
+  authorize(authUserInput: AuthUserInput!): AuthUserEntity!
   post(id: Int!): Post!
   user(id: Int!): User!
+  users: [User!]!
 }
 
 input UpdatePostInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  authorId: Float
+  content: String
   id: Int!
-}
-
-input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  title: String
 }
 
 type User {

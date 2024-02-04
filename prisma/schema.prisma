@@ -16,15 +16,24 @@ model User {
   name  String?
   role String
   posts Post[]
-  viewedPosts Post[]
+  viewedPosts ViewedPosts[]
 }
 // todo many to many
 
 model Post {
   id        Int      @default(autoincrement()) @id
   title     String
-  content   String?
-  author    User?    @relation(fields: [authorId], references: [id])
+  content   String
+  author    User    @relation(fields: [authorId], references: [id])
   authorId Int
-  viewers    User[] @relation(fields: [authorId], references: [id])
+  viewers    ViewedPosts[]
+}
+
+model ViewedPosts {
+  post       Post     @relation(fields: [postId], references: [id])
+  postId     Int // relation scalar field (used in the `@relation` attribute above)
+  user   User @relation(fields: [userId], references: [id])
+  userId Int // relation scalar field (used in the `@relation` attribute above)
+
+  @@id([postId, userId])
 }
