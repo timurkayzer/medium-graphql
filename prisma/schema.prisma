@@ -13,13 +13,12 @@ datasource db {
 model User {
   id    Int     @default(autoincrement()) @id
   email String  @unique
-  name  String?
+  name  String
   role String
+  passwordHash String
   posts Post[]
   viewedPosts ViewedPosts[]
 }
-// todo many to many
-
 model Post {
   id        Int      @default(autoincrement()) @id
   title     String
