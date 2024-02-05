@@ -20,6 +20,7 @@ input CreatePostInput {
 input CreateUserInput {
   email: String!
   name: String!
+  password: String!
   role: String!
 }
 

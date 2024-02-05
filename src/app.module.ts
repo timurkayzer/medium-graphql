@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { PostModule } from './post/post.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
+import { SecurityModule } from './security/security.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UserModule } from './user/user.module';
       sortSchema: true,
     }),
     PrismaModule,
+    SecurityModule,
   ],
   controllers: [AppController],
   providers: [AppService],
