@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PrismaModule } from 'src/prisma/prisma.module';
+import { SecurityModule } from 'src/security/security.module';
 import { UserResolver } from './user.resolver';
 import { UserService } from './user.service';
 
@@ -11,6 +12,7 @@ import { UserService } from './user.service';
     JwtModule.register({
       secret: process.env.JWT_SECRET,
     }),
+    SecurityModule,
   ],
 })
 export class UserModule {}

@@ -12,6 +12,8 @@ export class User {
   email: string;
   @Field()
   role: UserRole;
+  @Field()
+  passwordHash: string;
   @Field((type) => [Post])
   posts: Post[];
   @Field((type) => [Post])
