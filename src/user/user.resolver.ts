@@ -52,7 +52,10 @@ export class UserResolver {
     if (!isPasswordCorrect) throw new UserInputError('Wrong login or password');
 
     return {
-      token: this.securityService.generateToken({ email }, '1234'),
+      token: this.securityService.generateToken(
+        { email },
+        process.env.JWT_SECRET,
+      ),
     };
   }
 }

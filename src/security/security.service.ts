@@ -11,6 +11,8 @@ export class SecurityService {
     return passwordHash;
   }
 
+  async verifyUser(email: string, password: string) {}
+
   async confirmPassword(password, passwordHash) {
     return await compare(password, passwordHash);
   }
