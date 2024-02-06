@@ -1,3 +1,4 @@
+import { UserInputError } from '@nestjs/apollo';
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { SecurityService } from 'src/security/security.service';
 import { AuthUserInput } from './dto/auth-user.input';
@@ -37,10 +38,21 @@ export class UserResolver {
   }
 
   @Query(() => AuthUserEntity, { name: 'authorize' })
-  authorize(
+  async authorize(
     @Args('authUserInput', { type: () => AuthUserInput })
-    authUserInput: AuthUserInput,
+    { email, password }: AuthUserInput,
   ) {
-    // return this.userService.authorize(authUserInput);
+    const user = await this.userService.findOneByEmail(email);
+    if (!user) throw new UserInputError('Wrong login or password');
+    const isPasswordCorrect = await this.securityService.confirmPassword(
+      password,
+      user.passwordHash,
+    );
+
+    if (!isPasswordCorrect) throw new UserInputError('Wrong login or password');
+
+    return {
+      token: this.securityService.generateToken({ email }, '1234'),
+    };
   }
 }
