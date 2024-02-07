@@ -3,6 +3,7 @@
 # ------------------------------------------------------
 
 type AuthUserEntity {
+  refreshToken: String!
   token: String!
 }
 
